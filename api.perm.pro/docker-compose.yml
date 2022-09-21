@@ -1,0 +1,19 @@
+version: "3"
+services:
+  perm:
+    image: alex/perm-api-server
+    ports:
+      - "127.0.0.1:${VIRTUAL_APP_PORT}:${VIRTUAL_PORT}"
+    restart: always
+    environment:
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+    container_name: ${VIRTUAL_HOST}
+#    user: 1001:1001
+
+
+networks:
+  default:
+    external:
+      name: reverse-proxy-network
